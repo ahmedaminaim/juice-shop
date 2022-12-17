@@ -1,9 +1,12 @@
 on:
-  pull_request: {}
+  pull_request:
+    branches:
+      - master
+      - insecure
   push:
     branches:
     - main
-    - master
+    - insecure
     paths:
     - .github/workflows/semgrep.yml
   schedule:
