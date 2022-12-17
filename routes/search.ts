@@ -76,7 +76,7 @@ module.exports = function searchProducts () {
 
 
 // vuln-code-snippet start unionSqlInjectionChallenge dbSchemaChallenge
-module.exports = function searchProducts3 () {
+module.exports = function searchProducts5() {
   return (req: Request, res: Response, next: NextFunction) => {
     let criteria: any = req.query.q === 'undefined' ? '' : req.query.q ?? ''
     criteria = (criteria.length <= 200) ? criteria : criteria.substring(0, 200)
