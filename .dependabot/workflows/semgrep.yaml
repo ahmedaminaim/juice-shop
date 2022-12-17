@@ -1,8 +1,5 @@
 on:
-  pull_request:
-    branches:
-      - master
-      - insecure
+  pull_request: {}
   push:
     branches:
     - main
