@@ -33,13 +33,14 @@ jobs:
   generate-attestations:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main # v3.2.0
-      # - uses: actions/slsa-framework/slsa-github-generator@main
+      # - uses: actions/checkout@main # v3.2.0
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
       - name: Test generate attestations
         id: generate
-        run: |
-          node dist/index.js
-          echo "Done!2"
+        uses: slsa-framework/slsa-github-generator/.github/actions/generate-attestations@main
+        # run: |
+        #   node dist/index.js
+        #   echo "Done!2"
         # run: ./dist/index.js
         # uses: ./.github/actions/generate-attestations
         # with:
@@ -47,3 +48,6 @@ jobs:
         #   predicate-type: "https://slsa.dev/provenance/v0.2"
         #   predicate-file: .github/actions/generate-attestations/testdata/predicates/valid-slsa-v02.json
         #   output-folder: attestations
+
+
+        actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
