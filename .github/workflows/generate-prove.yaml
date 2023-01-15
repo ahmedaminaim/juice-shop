@@ -1,0 +1,23 @@
+name: pre-submit actions
+
+on:
+  pull_request: {}
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  generate-attestations:
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+      - name: Test generate attestations
+        id: generate
+        uses: ./.github/actions/generate-attestations
+        with:
+          slsa-outputs-file: .github/actions/generate-attestations/testdata/layouts/valid-layout.json
+          predicate-type: "https://slsa.dev/provenance/v0.2"
+          predicate-file: .github/actions/generate-attestations/testdata/predicates/valid-slsa-v02.json
+          output-folder: attestations
