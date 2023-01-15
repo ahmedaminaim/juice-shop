@@ -15,7 +15,4 @@ inputs:
     required: true
 runs:
   using: 'node16'
-  shell: bash
-  run: |
-    ls
-    pwd
+  main: '../dist/index.js'
