@@ -21,7 +21,7 @@ data/chatbot/*.*
 .sass-cache/
 build/
 cache/
-dist/
+# dist/
 logs/
 vagrant/.vagrant/
 *.orig

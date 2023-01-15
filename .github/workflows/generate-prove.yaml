@@ -38,8 +38,7 @@ jobs:
       - name: Test generate attestations
         id: generate
         run: |
-          pwd
-          ls
+          /dist/index.js
 
         # run: ./dist/index.js
         # uses: ./.github/actions/generate-attestations
