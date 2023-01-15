@@ -12,7 +12,7 @@ jobs:
   generate-attestations:
     runs-on: ubuntu-latest
     steps:
-      - uses: aactions/checkout@main # v3.2.0
+      - uses: actions/checkout@main # v3.2.0
       - name: Test generate attestations
         id: generate
         uses: ./.github/actions/generate-attestations
