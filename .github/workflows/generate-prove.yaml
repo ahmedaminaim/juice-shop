@@ -12,8 +12,8 @@ jobs:
   generate-attestations:
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@main # v3.2.0
-      - uses: actions/slsa-framework/slsa-github-generator@main
+      - uses: actions/checkout@main # v3.2.0
+      # - uses: actions/slsa-framework/slsa-github-generator@main
       - name: Test generate attestations
         id: generate
         uses: ./.github/actions/generate-attestations
