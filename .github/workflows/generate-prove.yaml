@@ -37,7 +37,7 @@ jobs:
       # - uses: actions/slsa-framework/slsa-github-generator@main
       - name: Test generate attestations
         id: generate
-        runs:
+        run:
           using: 'node16'
           shell: bash
           run: |
