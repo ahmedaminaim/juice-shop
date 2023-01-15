@@ -37,7 +37,7 @@ jobs:
       # - uses: actions/slsa-framework/slsa-github-generator@main
       - name: Test generate attestations
         id: generate
-        run: dist/index.js
+        run: ./dist/index.js
         # uses: ./.github/actions/generate-attestations
         # with:
         #   slsa-outputs-file: .github/actions/generate-attestations/testdata/layouts/valid-layout.json
