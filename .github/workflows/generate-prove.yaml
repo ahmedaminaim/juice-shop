@@ -1,9 +1,6 @@
 name: pre-submit actions
 
 on:
-  pull_request: {}
-  push:
-    branches: [main]
   workflow_call:
     inputs:
       slsa-outputs-file:
@@ -22,6 +19,9 @@ on:
       description: 'Output folder to place attestations'
       default: attestations
       required: true
+  pull_request: {}
+  push:
+    branches: [main]
 
 permissions: read-all
 
