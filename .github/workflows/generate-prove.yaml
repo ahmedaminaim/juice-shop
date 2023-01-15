@@ -4,21 +4,21 @@ on:
   workflow_call:
     inputs:
       slsa-outputs-file:
-      description: 'A JSON file describing the SLSA output layout with attestation filename keys and the generated subjects (and digests)'
-      default: .github/actions/generate-attestations/testdata/layouts/valid-layout.json
-      required: true
-    predicate-type:
-      description: 'A URI defining the type of the predicate, for e.g. https://slsa.dev/provenance/v0.2'
-      default: "https://slsa.dev/provenance/v0.2"
-      required: true
-    predicate-file:
-      description: 'A JSON file describing the SLSA predicate to attach to the subjects'
-      default: .github/actions/generate-attestations/testdata/predicates/valid-slsa-v02.json
-      required: true
-    output-folder:
-      description: 'Output folder to place attestations'
-      default: attestations
-      required: true
+        description: 'A JSON file describing the SLSA output layout with attestation filename keys and the generated subjects (and digests)'
+        default: .github/actions/generate-attestations/testdata/layouts/valid-layout.json
+        required: true
+      predicate-type:
+        description: 'A URI defining the type of the predicate, for e.g. https://slsa.dev/provenance/v0.2'
+        default: "https://slsa.dev/provenance/v0.2"
+        required: true
+      predicate-file:
+        description: 'A JSON file describing the SLSA predicate to attach to the subjects'
+        default: .github/actions/generate-attestations/testdata/predicates/valid-slsa-v02.json
+        required: true
+      output-folder:
+        description: 'Output folder to place attestations'
+        default: attestations
+        required: true
   pull_request: {}
   push:
     branches: [main]
