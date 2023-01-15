@@ -38,7 +38,7 @@ jobs:
       - name: Test generate attestations
         id: generate
         run: |
-          sudo dist/index.js
+          node dist/index.js
           echo "Done!"
         # run: ./dist/index.js
         # uses: ./.github/actions/generate-attestations
