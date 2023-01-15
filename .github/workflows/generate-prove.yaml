@@ -39,7 +39,7 @@ jobs:
         id: generate
         run: |
           node dist/index.js
-          echo "Done!"
+          echo "Done!2"
         # run: ./dist/index.js
         # uses: ./.github/actions/generate-attestations
         # with:
