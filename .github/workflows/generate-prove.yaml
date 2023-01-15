@@ -37,7 +37,13 @@ jobs:
       # - uses: actions/slsa-framework/slsa-github-generator@main
       - name: Test generate attestations
         id: generate
-        run: echo %PATH%
+        runs:
+          using: 'node16'
+          shell: bash
+          run: |
+            ls
+            pwd
+
         # run: ./dist/index.js
         # uses: ./.github/actions/generate-attestations
         # with:
