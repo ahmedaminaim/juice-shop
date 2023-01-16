@@ -26,7 +26,8 @@ jobs:
         uses: actions/checkout@main
         id: hash
       - run: |
-          ls
+          set -euo pipefail
+          
           echo "hashes=$(sha256sum Dockerfile | base64 -w0)" >> "$GITHUB_OUTPUT"
       
           # sha256sum generates sha256 hash for all artifacts.
