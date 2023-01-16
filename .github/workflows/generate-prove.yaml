@@ -25,8 +25,8 @@ jobs:
       - name: Generate hashes
         shell: bash
         id: hash
+        working-directory: juice-shop
         run: |
-          pwd
           ls
           # sha256sum generates sha256 hash for all artifacts.
           # base64 -w0 encodes to base64 and outputs on a single line.
