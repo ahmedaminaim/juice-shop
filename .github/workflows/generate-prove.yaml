@@ -25,6 +25,7 @@ jobs:
       - name: Generate hashes
         uses: actions/checkout@main
         id: hash
+        shell: bash
       - run: |
           set -euo pipefail
 
