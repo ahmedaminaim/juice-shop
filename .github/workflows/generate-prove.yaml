@@ -42,11 +42,11 @@ jobs:
       hashes: ${{ steps.hash.outputs.hashes }}
     runs-on: ubuntu-latest
     steps:
-      # - name: Build artifacts
-      #   run: |
-      #     # These are some amazing artifacts.
-      #     echo "foo" > artifact1
-      #     echo "bar" > artifact2
+      - name: Build artifacts
+        run: |
+          # These are some amazing artifacts.
+          echo find . -type f -exec sha256sum {} \; > artifacts
+          # echo "bar" > artifact2
 
       - name: Generate hashes
         shell: bash
@@ -56,7 +56,7 @@ jobs:
           # base64 -w0 encodes to base64 and outputs on a single line.
           # sha256sum artifact1 artifact2 ... | base64 -w0
           # echo "hashes=$(sha256sum artifact1 artifact2 | base64 -w0)" >> "$GITHUB_OUTPUT"
-          echo "hashes=$(find . -type f -exec sha256sum {} \; | base64 -w0)" >> "$GITHUB_OUTPUT"
+          echo "hashes=$(sha256sum artifacts | base64 -w0)" >> "$GITHUB_OUTPUT"
 
 
   provenance:
