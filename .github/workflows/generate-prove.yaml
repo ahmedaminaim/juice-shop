@@ -27,7 +27,7 @@ jobs:
 
       - name: Generate subject
         id: hash
-      - run: |
+        run: |
           set -euo pipefail
 
           echo "hashes=$(sha256sum Dockerfile | base64 -w0)" >> "$GITHUB_OUTPUT"  
