@@ -27,7 +27,7 @@ jobs:
         id: hash
       - run: |
           set -euo pipefail
-          
+
           echo "hashes=$(sha256sum Dockerfile | base64 -w0)" >> "$GITHUB_OUTPUT"
       
           # sha256sum generates sha256 hash for all artifacts.
@@ -36,15 +36,14 @@ jobs:
           # echo "hashes=$(sha256sum artifact1 artifact2 | base64 -w0)" >> "$GITHUB_OUTPUT"
           # echo "hashes=$(sha256sum Dockerfile | base64 -w0)" >> "$GITHUB_OUTPUT"
 
-
-  # provenance:
-  #   needs: [build]
-  #   permissions:
-  #     actions: read
-  #     id-token: write
-  #     contents: write
-  #   uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
-  #   with:
-  #     base64-subjects: "${{ needs.build.outputs.hashes }}"
-  #     # Upload provenance to a new release
-  #     upload-assets: true
+  provenance:
+    needs: [build]
+    permissions:
+      actions: read
+      id-token: write
+      contents: write
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
+    with:
+      base64-subjects: "${{ needs.build.outputs.hashes }}"
+      # Upload provenance to a new release
+      upload-assets: true
