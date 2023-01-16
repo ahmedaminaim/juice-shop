@@ -22,8 +22,10 @@ jobs:
           # echo find . -type f -exec sha256sum {} \; > artifacts
           # echo sha256sum Dockerfile > artifacts
 
-      - name: Generate subject
+      - name: Checkout repository
         uses: actions/checkout@main
+
+      - name: Generate subject
         id: hash
       - run: |
           set -euo pipefail
@@ -42,6 +44,6 @@ jobs:
       contents: write
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
     with:
-      base64-subjects: ${{ needs.build.outputs.hashes }}
+      base64-subjects: "${{ needs.build.outputs.hashes }}"
       # Upload provenance to a new release
       upload-assets: true
