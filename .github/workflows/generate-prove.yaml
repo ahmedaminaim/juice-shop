@@ -45,8 +45,8 @@ jobs:
       - name: Build artifacts
         run: |
           # These are some amazing artifacts.
-          echo find . -type f -exec sha256sum {} \; > artifacts
-          # echo "bar" > artifact2
+          # echo find . -type f -exec sha256sum {} \; > artifacts
+          echo sha256sum Dockerfile > artifacts
 
       - name: Generate hashes
         shell: bash
