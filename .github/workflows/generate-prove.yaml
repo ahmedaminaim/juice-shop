@@ -46,6 +46,6 @@ jobs:
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
     with:
       # base64-subjects: ${{ needs.build.outputs.hashes }}
-      base64-subjects: ${{ MDA5NDFjYTNmMjc4NGMyYzBmMWQyM2MwNmU0Nzc4NTA3ZThmNTU5M2FlNWJhM2UxY2JlMGJmZGQyMjQ2MmJmOSAgRG9ja2VyZmlsZQo= }}
+      base64-subjects: "MDA5NDFjYTNmMjc4NGMyYzBmMWQyM2MwNmU0Nzc4NTA3ZThmNTU5M2FlNWJhM2UxY2JlMGJmZGQyMjQ2MmJmOSAgRG9ja2VyZmlsZQo"
       # Upload provenance to a new release
       upload-assets: true
