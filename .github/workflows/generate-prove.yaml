@@ -28,7 +28,7 @@ jobs:
       - run: |
           set -euo pipefail
 
-        # echo "hashes=$(sha256sum Dockerfile | base64 -w0)" >> "$GITHUB_OUTPUT"
+          echo "hashes=$(sha256sum Dockerfile | base64 -w0)" >> "$GITHUB_OUTPUT"  
           echo ::set-env name=hashes::$(sha256sum Dockerfile | base64 -w0)
       
           # sha256sum generates sha256 hash for all artifacts.
