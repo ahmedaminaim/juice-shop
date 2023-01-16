@@ -23,6 +23,7 @@ jobs:
           # echo sha256sum Dockerfile > artifacts
 
       - name: Generate hashes
+        uses: actions/checkout@main
         shell: bash
         id: hash
         # working-directory: juice-shop
