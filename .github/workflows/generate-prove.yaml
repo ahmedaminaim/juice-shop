@@ -1,37 +1,11 @@
 name: pre-submit actions
 
 on:
-  workflow_call:
-    inputs:
-      slsa-outputs-file:
-        description: 'A JSON file describing the SLSA output layout with attestation filename keys and the generated subjects (and digests)'
-        default: ".github/actions/generate-attestations/testdata/layouts/valid-layout.json"
-        required: true
-        type: string
-      predicate-type:
-        description: 'A URI defining the type of the predicate, for e.g. https://slsa.dev/provenance/v0.2'
-        default: "https://slsa.dev/provenance/v0.2"
-        required: true
-        type: string
-      predicate-file:
-        description: 'A JSON file describing the SLSA predicate to attach to the subjects'
-        default: ".github/actions/generate-attestations/testdata/predicates/valid-slsa-v02.json"
-        required: true
-        type: string
-      output-folder:
-        description: 'Output folder to place attestations'
-        default: "attestations"
-        required: true
-        type: string
   pull_request: {}
   push:
     branches: [main]
 
 permissions: read-all
-
-
-
-
 
 
 jobs:
@@ -42,8 +16,8 @@ jobs:
       hashes: ${{ steps.hash.outputs.hashes }}
     runs-on: ubuntu-latest
     steps:
-      - name: Build artifacts
-        run: |
+      # - name: Build artifacts
+      #   run: |
           # These are some amazing artifacts.
           # echo find . -type f -exec sha256sum {} \; > artifacts
           # echo sha256sum Dockerfile > artifacts
@@ -52,6 +26,8 @@ jobs:
         shell: bash
         id: hash
         run: |
+          pwd
+          ls
           # sha256sum generates sha256 hash for all artifacts.
           # base64 -w0 encodes to base64 and outputs on a single line.
           # sha256sum artifact1 artifact2 ... | base64 -w0
@@ -59,51 +35,14 @@ jobs:
           echo "hashes=$(sha256sum Dockerfile | base64 -w0)" >> "$GITHUB_OUTPUT"
 
 
-  provenance:
-    needs: [build]
-    permissions:
-      actions: read
-      id-token: write
-      contents: write
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
-    with:
-      base64-subjects: "${{ needs.build.outputs.hashes }}"
-      # Upload provenance to a new release
-      upload-assets: true
-
-  # release:
-  #   needs: [build, provenance]
-  #   runs-on: ubuntu-latest
-  #   if: startsWith(github.ref, 'refs/tags/')
-  #   steps:
-  #     - name: Download artifact1
-  #       uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # tag=v2.1.0
-  #       with:
-  #         name: artifact1
-
-  #     - name: Download artifact2
-  #       uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # tag=v2.1.0
-  #       with:
-  #         name: artifact2
-
-  #     - name: Upload assets
-  #       uses: softprops/action-gh-release@1e07f4398721186383de40550babbdf2b84acfc5 # v0.1.14
-  #       with:
-  #         files: |
-  #           artifact1
-  #           artifact2
-
-# jobs:
-#   generate-attestations:
-#     runs-on: ubuntu-latest
-#     steps:
-#       # - uses: actions/checkout@main # v3.2.0
-#       - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
-#       - name: Test generate attestations
-#         id: generate
-#         uses: slsa-framework/slsa-github-generator/.github/actions/generate-attestations@main
-#         with:
-#           slsa-outputs-file: .github/actions/generate-attestations/testdata/layouts/valid-layout.json
-#           predicate-type: "https://slsa.dev/provenance/v0.2"
-#           predicate-file: .github/actions/generate-attestations/testdata/predicates/valid-slsa-v02.json
-#           output-folder: attestations
+  # provenance:
+  #   needs: [build]
+  #   permissions:
+  #     actions: read
+  #     id-token: write
+  #     contents: write
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
+  #   with:
+  #     base64-subjects: "${{ needs.build.outputs.hashes }}"
+  #     # Upload provenance to a new release
+  #     upload-assets: true
