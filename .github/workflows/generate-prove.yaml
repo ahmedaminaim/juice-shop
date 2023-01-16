@@ -24,7 +24,6 @@ jobs:
 
       - name: Generate hashes
         uses: actions/checkout@main
-        shell: bash
         id: hash
       - run: echo "hashes=$(sha256sum Dockerfile | base64 -w0)" >> "$GITHUB_OUTPUT"
       
